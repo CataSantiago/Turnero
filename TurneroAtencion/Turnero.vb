@@ -12,7 +12,7 @@ Imports Newtonsoft.Json.Linq
 
 Public Class Turnero
 
-    Dim connectionString = "http://127.0.0.1:5000"
+    Dim connectionString = "http://api.totemapp.com:5000"
     Dim httpClient As New HttpClient()
     Dim responceTurnos
     Dim caja As String
