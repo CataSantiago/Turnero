@@ -22,62 +22,62 @@ Partial Class WaitForm1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.progressPanel1 = New DevExpress.XtraWaitForm.ProgressPanel()
-        Me.tableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.tableLayoutPanel1.SuspendLayout()
-        Me.SuspendLayout()
-        '
-        'progressPanel1
-        '
-        Me.progressPanel1.Appearance.BackColor = System.Drawing.Color.Transparent
-        Me.progressPanel1.Appearance.Options.UseBackColor = True
-        Me.progressPanel1.AppearanceCaption.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.progressPanel1.AppearanceCaption.Options.UseFont = True
-        Me.progressPanel1.AppearanceDescription.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.progressPanel1.AppearanceDescription.Options.UseFont = True
-        Me.progressPanel1.Caption = "Espere por favor"
-        Me.progressPanel1.Description = "Cargando ..."
-        Me.progressPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.progressPanel1.ImageHorzOffset = 20
-        Me.progressPanel1.Location = New System.Drawing.Point(0, 17)
-        Me.progressPanel1.Margin = New System.Windows.Forms.Padding(0, 3, 0, 3)
-        Me.progressPanel1.Name = "progressPanel1"
-        Me.progressPanel1.Size = New System.Drawing.Size(246, 39)
-        Me.progressPanel1.TabIndex = 0
-        Me.progressPanel1.Text = "progressPanel1"
-        '
-        'tableLayoutPanel1
-        '
-        Me.tableLayoutPanel1.AutoSize = True
-        Me.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent
-        Me.tableLayoutPanel1.ColumnCount = 1
-        Me.tableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tableLayoutPanel1.Controls.Add(Me.progressPanel1, 0, 0)
-        Me.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.tableLayoutPanel1.Name = "tableLayoutPanel1"
-        Me.tableLayoutPanel1.Padding = New System.Windows.Forms.Padding(0, 14, 0, 14)
-        Me.tableLayoutPanel1.RowCount = 1
-        Me.tableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tableLayoutPanel1.Size = New System.Drawing.Size(246, 73)
-        Me.tableLayoutPanel1.TabIndex = 1
-        '
-        'WaitForm1
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoSize = True
-        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(246, 73)
-        Me.Controls.Add(Me.tableLayoutPanel1)
-        Me.DoubleBuffered = True
-        Me.Name = "WaitForm1"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Form1"
-        Me.tableLayoutPanel1.ResumeLayout(False)
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        progressPanel1 = New DevExpress.XtraWaitForm.ProgressPanel()
+        tableLayoutPanel1 = New TableLayoutPanel()
+        tableLayoutPanel1.SuspendLayout()
+        SuspendLayout()
+        ' 
+        ' progressPanel1
+        ' 
+        progressPanel1.Appearance.BackColor = Color.Transparent
+        progressPanel1.Appearance.Options.UseBackColor = True
+        progressPanel1.AppearanceCaption.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        progressPanel1.AppearanceCaption.Options.UseFont = True
+        progressPanel1.AppearanceDescription.Font = New Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point)
+        progressPanel1.AppearanceDescription.Options.UseFont = True
+        progressPanel1.Caption = "Espere por favor"
+        progressPanel1.Description = "Cargando Turnos  ..."
+        progressPanel1.Dock = DockStyle.Fill
+        progressPanel1.ImageHorzOffset = 20
+        progressPanel1.Location = New Point(0, 17)
+        progressPanel1.Margin = New Padding(0, 3, 0, 3)
+        progressPanel1.Name = "progressPanel1"
+        progressPanel1.Size = New Size(246, 39)
+        progressPanel1.TabIndex = 0
+        progressPanel1.Text = "progressPanel1"
+        ' 
+        ' tableLayoutPanel1
+        ' 
+        tableLayoutPanel1.AutoSize = True
+        tableLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink
+        tableLayoutPanel1.BackColor = Color.Transparent
+        tableLayoutPanel1.ColumnCount = 1
+        tableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
+        tableLayoutPanel1.Controls.Add(progressPanel1, 0, 0)
+        tableLayoutPanel1.Dock = DockStyle.Fill
+        tableLayoutPanel1.Location = New Point(0, 0)
+        tableLayoutPanel1.Name = "tableLayoutPanel1"
+        tableLayoutPanel1.Padding = New Padding(0, 14, 0, 14)
+        tableLayoutPanel1.RowCount = 1
+        tableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        tableLayoutPanel1.Size = New Size(246, 73)
+        tableLayoutPanel1.TabIndex = 1
+        ' 
+        ' WaitForm1
+        ' 
+        AutoScaleDimensions = New SizeF(6F, 13F)
+        AutoScaleMode = AutoScaleMode.Font
+        AutoSize = True
+        AutoSizeMode = AutoSizeMode.GrowAndShrink
+        ClientSize = New Size(246, 73)
+        Controls.Add(tableLayoutPanel1)
+        DoubleBuffered = True
+        Name = "WaitForm1"
+        StartPosition = FormStartPosition.Manual
+        Text = "Form1"
+        tableLayoutPanel1.ResumeLayout(False)
+        ResumeLayout(False)
+        PerformLayout()
 
     End Sub
 

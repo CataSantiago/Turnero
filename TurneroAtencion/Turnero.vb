@@ -6,12 +6,13 @@ Imports System.Net.Http
 Imports System.Runtime.Intrinsics.X86
 Imports System.Text
 Imports System.Text.Json
+Imports DevExpress.CodeParser
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 
 Public Class Turnero
 
-    Dim connectionString = "http://api.totemapp.com:5000"
+    Dim connectionString = "http://127.0.0.1:5000"
     Dim httpClient As New HttpClient()
     Dim responceTurnos
     Dim caja As String
@@ -89,6 +90,12 @@ Public Class Turnero
 
                 MsgBox("La Aplicacion de Pantalla no se esta ejecutando.", MsgBoxStyle.Critical, "Turnero")
 
+            ElseIf ex.Message.Contains("'T'") Then
+
+                MsgBox("No hay turnos anteriores para atender.", MsgBoxStyle.Exclamation, "Sin turnos")
+                turno = Nothing
+                btnFinalizar.Enabled = False
+
             Else
 
                 MsgBox(ex.Message, MsgBoxStyle.Critical, "Turnero")
@@ -109,6 +116,7 @@ Public Class Turnero
             AbrirEspera()
             turno = MakeRequestPOST(urlAnteriorTurno)
             CerrarEspera()
+
             If turno <> "The remote server returned an error: (404) NOT FOUND." Then
                 Dim json As JsonDocument = JsonDocument.Parse(turno)
                 Dim rootElement = json.RootElement
@@ -127,6 +135,12 @@ Public Class Turnero
             If ex.Message.Contains("'S'") Then
 
                 MsgBox("La Aplicacion de Pantalla no se esta ejecutando.", MsgBoxStyle.Critical, "Turnero")
+
+            ElseIf ex.Message.Contains("'T'") Then
+
+                MsgBox("No hay turnos anteriores para atender.", MsgBoxStyle.Exclamation, "Sin turnos")
+                turno = Nothing
+                btnFinalizar.Enabled = False
 
             Else
 
@@ -210,7 +224,19 @@ Public Class Turnero
 
             Using response = DirectCast(request.GetResponse(), HttpWebResponse)
                 Using streamReader As New StreamReader(response.GetResponseStream())
-                    responseData = streamReader.ReadToEnd()
+
+                    If response.StatusCode = HttpStatusCode.OK Then
+
+                        responseData = streamReader.ReadToEnd()
+
+                    End If
+
+                    If response.StatusCode = HttpStatusCode.NotFound Then
+
+                        responseData = "404"
+
+                    End If
+
                 End Using
             End Using
 
@@ -221,6 +247,7 @@ Public Class Turnero
             If ex.Response IsNot Nothing Then
                 Using stream As Stream = ex.Response.GetResponseStream()
                     Using reader As New StreamReader(stream)
+
                         responseData = reader.ReadToEnd()
                     End Using
                 End Using
@@ -327,7 +354,17 @@ Public Class Turnero
 
         Catch ex As Exception
 
-            MsgBox(ex.Message)
+            If ex.Message.Contains("'T'") Then
+
+                MsgBox("No hay turnos para finalizar.", MsgBoxStyle.Exclamation, "Sin turnos")
+                Me.Enabled = False
+
+            Else
+
+                MsgBox(ex.Message, MsgBoxStyle.Critical, "Turnero")
+
+            End If
+
 
         End Try
 
