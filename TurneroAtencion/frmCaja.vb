@@ -7,16 +7,6 @@ Public Class frmCaja
             e.Handled = True
         End If
 
-        If txtCaja.Text.Length = 3 Then
-
-            btnAceptar.Enabled = True
-
-        Else
-
-            btnAceptar.Enabled = False
-
-        End If
-
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
@@ -57,6 +47,19 @@ Public Class frmCaja
 
         Turnero.Show()
         Turnero.Enabled = True
+
+    End Sub
+
+    Private Sub txtCaja_TextChanged(sender As Object, e As EventArgs) Handles txtCaja.TextChanged
+
+        If txtCaja.TextLength = 3 Then
+
+            btnAceptar.Enabled = True
+
+        Else
+
+            btnAceptar.Enabled = False
+        End If
 
     End Sub
 End Class

@@ -87,6 +87,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -195,15 +203,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TurneroInstaller"
-        "ProductCode" = "8:{E23FCB3C-BC6C-4EA6-BE57-B75FE8C9203D}"
-        "PackageCode" = "8:{631A4D13-CC0A-49EE-8B0D-671A0E17D968}"
+        "ProductCode" = "8:{C7780F91-0A3F-4CD5-AB1C-F34E5DFA4A57}"
+        "PackageCode" = "8:{20F15263-1709-42E2-857B-E388920F8A8C}"
         "UpgradeCode" = "8:{B2B60713-0D42-49DC-9CCC-E00985005AEA}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.2"
         "Manufacturer" = "8:Equipo Vallejo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

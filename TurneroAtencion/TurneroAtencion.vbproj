@@ -6,6 +6,9 @@
     <StartupObject>TurneroAtencion.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

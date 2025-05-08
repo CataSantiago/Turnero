@@ -62,8 +62,15 @@ Public Class Turnero
 
         'Tomar siguiente turno, quitarlo de la cola
         Dim urlSiguienteTurno = $"{connectionString}/caja/siguiente/{cmbMotivos.Text.ToLower}/{My.Settings.caja}"
-
+        'Guardar Turno para anterior o para no perderlo?
         Try
+
+            'If turno IsNot Nothing Then
+
+            '    btnFinalizar.PerformClick()
+
+            'End If
+
             AbrirEspera()
             turno = MakeRequestPOST(urlSiguienteTurno)
             CerrarEspera()
@@ -74,8 +81,9 @@ Public Class Turnero
                 Dim rootElement = json.RootElement
                 txtTurno.Text = $"Turno: {rootElement.GetProperty("codigo").ToString}"
 
-                btnFinalizar.Enabled = True
                 btnSiguiente.Enabled = False
+                Task.Delay(2000)
+                btnFinalizar.Enabled = True
 
             Else
 
@@ -113,6 +121,13 @@ Public Class Turnero
         Dim urlAnteriorTurno = $"{connectionString}/caja/anterior/{cmbMotivos.Text.ToLower}/{My.Settings.caja}"
 
         Try
+
+            'If turno IsNot Nothing Then
+
+            '    btnFinalizar.PerformClick()
+
+            'End If
+
             AbrirEspera()
             turno = MakeRequestPOST(urlAnteriorTurno)
             CerrarEspera()
@@ -123,11 +138,13 @@ Public Class Turnero
 
                 txtTurno.Text = $"Turno: {rootElement.GetProperty("codigo").ToString}"
                 'SystemSounds.Beep.Play()
-                btnFinalizar.Enabled = True
                 btnAnterior.Enabled = False
+                Task.Delay(2000)
+                btnFinalizar.Enabled = True
             Else
 
-                MsgBox("No hay turnos para atender.", MsgBoxStyle.Exclamation, "Sin turnos")
+                MsgBox("No hay turnos anteriores para atender.", MsgBoxStyle.Exclamation, "Sin turnos")
+                btnFinalizar.Enabled = False
 
             End If
         Catch ex As Exception
@@ -166,7 +183,6 @@ Public Class Turnero
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbMotivos.SelectedIndexChanged
 
 
-
         My.Settings.Motivo = cmbMotivos.Text
         My.Settings.Save()
 
@@ -180,6 +196,12 @@ Public Class Turnero
         btnAnterior.Enabled = True
         btnSiguiente.Enabled = True
         'btnCrearTurno.Enabled = True
+
+        If turno IsNot Nothing Then
+
+            Liberar()
+
+        End If
 
 
     End Sub
@@ -340,7 +362,7 @@ Public Class Turnero
             Dim json As JsonDocument = JsonDocument.Parse(turno)
             Dim rootElement = json.RootElement
 
-            Dim urlFinalizar = $"{connectionString}//turno/{rootElement.GetProperty("id").ToString}/finalizar"
+            Dim urlFinalizar = $"{connectionString}/turno/{rootElement.GetProperty("id").ToString}/finalizar"
 
             AbrirEspera()
             MakeRequestPOST(urlFinalizar)
@@ -351,17 +373,52 @@ Public Class Turnero
             'Habilitar botones siguiente y anterior
             btnSiguiente.Enabled = True
             btnAnterior.Enabled = True
+            btnFinalizar.Enabled = False
 
         Catch ex As Exception
 
             If ex.Message.Contains("'T'") Then
 
                 MsgBox("No hay turnos para finalizar.", MsgBoxStyle.Exclamation, "Sin turnos")
-                Me.Enabled = False
+                btnFinalizar.Enabled = False
 
             Else
 
                 MsgBox(ex.Message, MsgBoxStyle.Critical, "Turnero")
+                btnFinalizar.Enabled = False
+
+            End If
+
+
+        End Try
+
+    End Sub
+
+    Sub Liberar()
+
+        Try
+
+            Dim json As JsonDocument = JsonDocument.Parse(turno)
+            Dim rootElement = json.RootElement
+
+            Dim urlFinalizar = $"{connectionString}/turno/{rootElement.GetProperty("id").ToString}/liberar"
+
+            AbrirEspera()
+            MakeRequestPOST(urlFinalizar)
+            CerrarEspera()
+
+
+        Catch ex As Exception
+
+            If ex.Message.Contains("'T'") Then
+
+                'MsgBox("No hay turnos para finalizar.", MsgBoxStyle.Exclamation, "Sin turnos")
+                'btnFinalizar.Enabled = False
+
+            Else
+
+                'MsgBox(ex.Message, MsgBoxStyle.Critical, "Turnero")
+                'btnFinalizar.Enabled = False
 
             End If
 
@@ -379,9 +436,10 @@ Public Class Turnero
 
     Private Sub Turnero_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
 
-        If turno IsNot Nothing Then
+        'añadir que sea un turno correcto
+        If My.Settings.caja IsNot Nothing AndAlso turno IsNot Nothing Then
 
-            btnFinalizar.PerformClick()
+            Liberar()
 
         End If
 
@@ -422,5 +480,7 @@ Public Class Turnero
 
 
     'End Sub
+
+
 
 End Class

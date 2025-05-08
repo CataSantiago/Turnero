@@ -41,7 +41,7 @@ Partial Class Turnero
         ' 
         btnSiguiente.Enabled = False
         btnSiguiente.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
-        btnSiguiente.Location = New Point(125, 22)
+        btnSiguiente.Location = New Point(58, 22)
         btnSiguiente.Name = "btnSiguiente"
         btnSiguiente.Size = New Size(340, 164)
         btnSiguiente.TabIndex = 0
@@ -58,6 +58,7 @@ Partial Class Turnero
         btnAnterior.TabIndex = 1
         btnAnterior.Text = "Regresar Turno"
         btnAnterior.UseVisualStyleBackColor = True
+        btnAnterior.Visible = False
         ' 
         ' txtTurno
         ' 
